@@ -1,7 +1,13 @@
+from os.path import join
+from time import time_ns as time
+
 TEST = "input_test3.txt"
 INPUT = "input3.txt"
+LOCAL = 'Day 3'
+start = time()
 
-with open(INPUT) as file: binaries = [line.strip() for line in file.readlines()]
+with open(join(LOCAL,INPUT)) as file: 
+    binaries = list([line.strip() for line in file.readlines()])
 
 # Part 1
 # TEST = 198 | INPUT = 3985686
@@ -41,3 +47,5 @@ for bit in range(size):
 epsilon = binaries[0]
 
 print("Part 2: ", int(gamma,2) * int(epsilon, 2))
+
+print("Time elapsed in ns: ", time() - start)

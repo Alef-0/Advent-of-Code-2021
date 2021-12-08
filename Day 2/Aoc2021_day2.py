@@ -1,7 +1,13 @@
+from os.path import join
+from time import time_ns as time
+
 TEST = "input_test2.txt"
 INPUT = "input2.txt"
+LOCAL = 'Day 2'
+start = time()
 
-with open(INPUT) as file: instructions = [line.split() for line in file.readlines()]
+with open(join(LOCAL,INPUT)) as file: 
+    instructions = [line.split() for line in file.readlines()]
 
 # Part 1
 # TEST = 150 | INPUT = 1636725
@@ -27,4 +33,4 @@ for command, value in instructions:
         case _: pass
 print('Part 2: ', horizontal * depth)
 
-
+print("Time in ns: ", time() - start)

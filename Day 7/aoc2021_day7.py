@@ -1,10 +1,14 @@
+from os.path import join
+from time import time_ns as time
+from statistics import median
+
 TEST = 'test_input7.txt'
 INPUT = 'input7.txt'
+LOCAL = "Day 7"
+start = time()
 
-with open(INPUT) as file: 
+with open(join(LOCAL, INPUT)) as file: 
     crabs = list(map(int,file.read().split(',')))
-
-from statistics import median
 
 def calculate_fuel(position, part2 = True):
     fuel = 0
@@ -23,9 +27,7 @@ print("Part 1: ", answer)
 
 # Part 2
 # TEST = 168 | INPUT = 98925151
-# In some test cases you can use the mean rounded 
-# As the best case, but it's not garanteed
-
+# In some test cases you can use the mean rounded as the best case, but it's not garanteed
 low, high = min(crabs), max(crabs)
 # Edge cases
 if   answer := calculate_fuel(low)  <= calculate_fuel(low + 1): pass
@@ -48,3 +50,4 @@ else:
     
 print("Part 2: ", answer)
 
+print("Time elapsed in ns: ", time() - start)

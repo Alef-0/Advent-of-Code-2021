@@ -1,19 +1,23 @@
+from os.path import join
+from time import time_ns as time
+import numpy as np
+
 TEST = 'input_test5.txt'
 INPUT = 'input5.txt'
+LOCAL = "Day 5"
 DIMENSIONS = 1000 # It's normally ~ 1000
 # This one is not efficient
+start_time = time()
 
 start, end = [],[]
 copy_start = start.copy()
 copy_end = end.copy()
-with open(INPUT) as file:
+with open(join(LOCAL,INPUT)) as file:
     instructions = file.readlines()
     for line in instructions:
         left, right = line.split(' -> ')
         start.append([int(x) for x in left.split(',')])
         end.append([int(x) for x in right.split(',')])
-
-import numpy as np
 
 def fill(grid, p1, p2, part2 = False):
     # defining ranges
@@ -54,7 +58,6 @@ for line in grid:
             total += 1
 print("Part 1: ", total)
 
-
 # Part 2
 # TEST = 12 | INPUT = 16716
 grid = np.zeros((DIMENSIONS,DIMENSIONS))
@@ -67,7 +70,7 @@ for line in grid:
             total += 1
 print("Part 2: ", total)
 
-
+print("Time elapsed in ns: ", time() - start_time)
 # If you want to see the grid after all it needs to be transposed
 # Since the first indice are lines and then columns
 # print(grid.transpose())

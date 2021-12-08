@@ -2,12 +2,16 @@
 # It will run and not finish if the days are drifiting close to part 2 ~ 170
 # It's just interesting to see a obvious approach for a inneficient problem
 # And many did the same just to pass from part 1
+from os.path import join
+from time import time_ns as time
 
 TEST = 'test_input6.txt'
 INPUT = 'input6.txt'
+LOCAL = "Day 6"
 school = []
+start = time()
 
-with open(TEST) as file: 
+with open(join(LOCAL,TEST)) as file: 
     school = list(map(int,file.read().split(',')))
 
 copy_school = school.copy()
@@ -32,7 +36,7 @@ for j in range(part2):
         if school[i] == 0: add += 1; school[i] = 6
         else: school[i] -= 1
     if add != 0: school += [8] * add
-    # print(j)
+    print("In day: ", j)
 
 
 print('Part 2: ', len(school))

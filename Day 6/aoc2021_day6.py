@@ -1,7 +1,14 @@
+from os.path import join
+from time import time_ns as time
+import numpy as np
+
 TEST = 'test_input6.txt'
 INPUT = 'input6.txt'
+LOCAL = "Day 6"
+school = []
+start = time()
 
-with open(INPUT) as file: 
+with open(join(LOCAL,INPUT)) as file: 
     original = list(map(int,file.read().split(',')))
 
 part1 = 80
@@ -19,8 +26,8 @@ def create(days, school, conception, timer, times = 1):
         school[new_fish + 7 * i] += 1 * times
     return
 
-import numpy as np
-
+# Part 1
+# Test = 5934 | INPUT = 388739
 school = np.zeros(part1 + 1)
 school[0] = len(original)
 for day in range(part1 + 1):
@@ -32,6 +39,8 @@ for day in range(part1 + 1):
             create(part1, school,day, 8, school[day])
 print('Part 1: ', sum(school))
 
+# Part 2
+# Test = 26984457539 | INPUT = 1741362314973
 school = np.zeros(part2 + 1)
 school[0] = len(original)
 for day in range(part2 + 1):
@@ -43,8 +52,4 @@ for day in range(part2 + 1):
             create(part2, school,day, 8, school[day])
 print('Part 2: ', sum(school))
 
-# Part 1
-# Test = 5934 | INPUT = 388739
-
-# Part 2
-# Test = 26984457539 | INPUT = 1741362314973
+print("Time elapsed in ns: ", time() - start)

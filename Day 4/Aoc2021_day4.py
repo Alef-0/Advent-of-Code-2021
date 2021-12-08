@@ -1,10 +1,15 @@
-TEST = "input_test4.txt"
-INPUT = "input4.txt"
-BINGO_SIZE = 25
+from os.path import join
+from time import time_ns as time
 import numpy as np
 
+TEST = "input_test4.txt"
+INPUT = "input4.txt"
+LOCAL = 'Day 4'
+BINGO_SIZE = 25
+start = time()
+
 bingos = []
-with open(INPUT) as file: 
+with open(join(LOCAL,INPUT)) as file: 
     numbers = [nums.strip() for nums in file.readline().split(',')]
     _ = file.readline() # Empty Line
     rest = file.read().split()
@@ -20,6 +25,7 @@ with open(INPUT) as file:
         )
 
 check = [True] * len(bingos)
+points = []
 
 # It will be checked into a singular functions
 def count(board, number):
@@ -30,7 +36,6 @@ def count(board, number):
                 total += int(board[i,j])
     return total * int(number)
 
-points = []
 def mark(number):
     # Check the number
     for board in bingos: 
@@ -49,9 +54,10 @@ def mark(number):
 
 # Part 1
 # TEST = 4512 | INPUT = 69579
-points = []
 for i in numbers: mark(i)
 print('Part 1: ', points[0])
 print("Part 2: ", points[-1])
 # Part 2
 # TEST = 1924 | INPUT = 14877
+
+print("Time elapsed in ns: ", time() - start)
