@@ -26,7 +26,7 @@ def path(caves, current, stack, part2=False):
         else: 
             return 
     else:
-        lowers = [x for x in stack if x.islower() and x != 'end' and x != 'start']
+        lowers = [x for x in stack if x.islower()]
         if current.isupper() or len(set(lowers)) == len(lowers) or current not in stack:
             stack.append(current)
         else:
