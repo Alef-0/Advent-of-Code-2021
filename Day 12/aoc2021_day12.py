@@ -1,15 +1,18 @@
 from collections import defaultdict
 from time import time_ns as time
-from os.path import join
+from os.path import join, isfile
 
 INPUT = 'input12.txt'
 TEST = 'test12.txt'
 LOCAL = 'Day 12'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
+
 
 caves = defaultdict(list)
 
-with open(join(LOCAL, INPUT)) as file:
+with open(CHOICE) as file:
     data = file.read().split()
 
 for paths in data:

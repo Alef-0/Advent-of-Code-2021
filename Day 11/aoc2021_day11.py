@@ -1,13 +1,16 @@
 import numpy as np
 from time import time_ns as time
-from os.path import join
+from os.path import join, isfile
 
 TEST = 'test11.txt'
 INPUT = 'input11.txt'
 LOCAL = 'Day 11'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL,INPUT)) as file: matrix = file.read().split()
+
+with open(CHOICE) as file: matrix = file.read().split()
 
 class Map():
     def __init__(self, matrix):

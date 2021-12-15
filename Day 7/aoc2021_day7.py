@@ -1,4 +1,4 @@
-from os.path import join
+from os.path import join,isfile
 from time import time_ns as time
 from statistics import median
 
@@ -6,8 +6,11 @@ TEST = 'test_input7.txt'
 INPUT = 'input7.txt'
 LOCAL = "Day 7"
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL, INPUT)) as file: 
+
+with open(CHOICE) as file: 
     crabs = list(map(int,file.read().split(',')))
 
 def calculate_fuel(position, part2 = True):

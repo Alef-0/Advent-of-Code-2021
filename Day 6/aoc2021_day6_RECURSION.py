@@ -2,7 +2,7 @@
 # It will run and not finish if the days are drifiting close to part 2 ~ 170
 # It's just interesting to see a obvious approach for a inneficient problem
 # And many did the same just to pass from part 1
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 
 TEST = 'test_input6.txt'
@@ -10,8 +10,11 @@ INPUT = 'input6.txt'
 LOCAL = "Day 6"
 school = []
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL,TEST)) as file: 
+
+with open(CHOICE) as file: 
     school = list(map(int,file.read().split(',')))
 
 copy_school = school.copy()

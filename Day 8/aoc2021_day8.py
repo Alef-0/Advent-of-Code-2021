@@ -1,4 +1,4 @@
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 
 
@@ -6,9 +6,12 @@ TEST = 'test_input8.txt'
 INPUT = 'input8.txt'
 LOCAL = 'Day 8'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
+
 
 sequences, outputs = [],[]
-with open(join(LOCAL, INPUT)) as file:
+with open(CHOICE) as file:
     entrys = file.readlines()
     for line in entrys:
         left, right = line.split(' | ')

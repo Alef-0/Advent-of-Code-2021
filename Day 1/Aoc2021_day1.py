@@ -1,12 +1,15 @@
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 
 TEST = "input_test1.txt"
 INPUT = "input1.txt"
 LOCAL = 'Day 1'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL,INPUT)) as file: 
+
+with open(CHOICE) as file: 
     dephts = list(map(int,file.readlines()))
 
 # Part 1

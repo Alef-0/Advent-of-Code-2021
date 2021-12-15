@@ -1,11 +1,19 @@
 import numpy as np
+from os.path import join,isfile
+from time import time_ns as time
+
 TEST = 'test13.txt'
 INPUT = 'input13.txt'
+LOCAL = 'Day 13'
 MAX_SIZE = 15
+start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
+
 
 folds = []
 marks_x, marks_y = [], []
-with open(INPUT) as file: 
+with open(CHOICE) as file: 
     while line := file.readline():
         if line == '\n': pass
         elif len(values := line.split(',')) == 2:
@@ -70,3 +78,5 @@ for lines in matrix:
         else: print(chars, end='')
     print()
 # PART 2 | CPZLPFZL
+
+print('Time elapsed in ns: ', time()-start)

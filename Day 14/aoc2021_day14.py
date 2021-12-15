@@ -1,12 +1,19 @@
 from collections import Counter, defaultdict
+from os.path import isfile, join
+from time import time_ns as time
 
 TEST = 'test14.txt'
 INPUT = 'input14.txt'
+start = time()
+LOCAL = 'Day 14'
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
+
 
 dicio = defaultdict(lambda: "")
 count = Counter()
 
-with open(TEST) as file: 
+with open(CHOICE) as file: 
     polymer = list(file.readline().strip())
     _ = file.readline()
     rest = file.read().split('\n')
@@ -34,3 +41,4 @@ def count(polymer, dicio, cicle):
 result =  count(polymer, dicio, 40).most_common()
 print('Part 2: ', result[0][1] - result[-1][1])
 # print(count)
+print('Time elapsed in ns: ', start - time())

@@ -1,5 +1,5 @@
 from statistics import median
-from os.path import join
+from os.path import join, isfile
 
 stack = []
 
@@ -11,8 +11,11 @@ LOCAL = "Day 10"
 
 TEST = 'test10.txt'
 INPUT = 'input10.txt'
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL,TEST)) as file: data = file.read().split()
+
+with open(CHOICE) as file: data = file.read().split()
 
 def calculate(part2 = False):
     total = 0

@@ -1,4 +1,4 @@
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 import numpy as np
 
@@ -7,8 +7,10 @@ INPUT = 'input6.txt'
 LOCAL = "Day 6"
 school = []
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL,INPUT)) as file: 
+with open(CHOICE) as file: 
     original = list(map(int,file.read().split(',')))
 
 part1 = 80

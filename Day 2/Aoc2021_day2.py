@@ -1,12 +1,15 @@
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 
 TEST = "input_test2.txt"
 INPUT = "input2.txt"
 LOCAL = 'Day 2'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL,INPUT)) as file: 
+
+with open(CHOICE) as file: 
     instructions = [line.split() for line in file.readlines()]
 
 # Part 1

@@ -1,4 +1,4 @@
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 import numpy as np
 
@@ -8,11 +8,13 @@ LOCAL = "Day 5"
 DIMENSIONS = 1000 # It's normally ~ 1000
 # This one is not efficient
 start_time = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
 start, end = [],[]
 copy_start = start.copy()
 copy_end = end.copy()
-with open(join(LOCAL,INPUT)) as file:
+with open(CHOICE) as file: 
     instructions = file.readlines()
     for line in instructions:
         left, right = line.split(' -> ')

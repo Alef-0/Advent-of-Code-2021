@@ -1,6 +1,5 @@
-# This one sees the pattern that one segment si X time on in all numbers
-
-from os.path import join
+# This one sees the pattern that one segment is in X time on in all numbers
+from os.path import join,isfile
 from time import time_ns as time
 
 
@@ -8,9 +7,12 @@ TEST = 'test_input8.txt'
 INPUT = 'input8.txt'
 LOCAL = 'Day 8'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
+
 
 sequences, outputs = [],[]
-with open(join(LOCAL, INPUT)) as file:
+with open(CHOICE) as file:
     entrys = file.readlines()
     for line in entrys:
         left, right = line.split(' | ')
@@ -92,4 +94,4 @@ for left, right in zip(sequences, outputs):
     total+= get_number(dictionary, right)
 print('Part 2: ', total)
 
-print('Time elapsed in ns: ', (time() - start)/100000)
+print('Time elapsed in ns: ', time() - start)

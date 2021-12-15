@@ -1,12 +1,14 @@
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 
 TEST = "input_test3.txt"
 INPUT = "input3.txt"
 LOCAL = 'Day 3'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL,INPUT)) as file: 
+with open(CHOICE) as file: 
     binaries = list([line.strip() for line in file.readlines()])
 
 # Part 1

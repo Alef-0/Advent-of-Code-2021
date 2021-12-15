@@ -1,5 +1,4 @@
-from os.path import join
-from collections import Counter
+from os.path import join, isfile
 from time import time_ns as time
 from numpy import array
 
@@ -7,8 +6,11 @@ TEST = 'test9.txt'
 INPUT = 'input9.txt'
 LOCAL = 'Day 9'
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
-with open(join(LOCAL, INPUT)) as file: 
+
+with open(CHOICE) as file: 
     points = file.read().split()
     for i in range(len(points)):
         points[i] = list(map(int,list(points[i])))

@@ -1,4 +1,4 @@
-from os.path import join
+from os.path import join, isfile
 from time import time_ns as time
 import numpy as np
 
@@ -7,9 +7,11 @@ INPUT = "input4.txt"
 LOCAL = 'Day 4'
 BINGO_SIZE = 25
 start = time()
+CHOICE = INPUT
+if not isfile(CHOICE): CHOICE = join(LOCAL, CHOICE)
 
 bingos = []
-with open(join(LOCAL,INPUT)) as file: 
+with open(CHOICE) as file: 
     numbers = [nums.strip() for nums in file.readline().split(',')]
     _ = file.readline() # Empty Line
     rest = file.read().split()
